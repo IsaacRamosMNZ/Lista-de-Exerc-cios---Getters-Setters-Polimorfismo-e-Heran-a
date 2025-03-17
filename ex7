@@ -1,50 +1,50 @@
 class Escola:
-    def _init_(self, nome, endereco):
+     _init_(self, nome, endereco):
         self.__nome = nome  # Atributo privado
         self.__endereco = endereco  # Atributo privado
 
-    def get_nome(self):
+     get_nome(self):
         return self.__nome
 
-    def set_nome(self, nome):
+     set_nome(self, nome):
         self.__nome = nome
 
-    def get_endereco(self):
+     get_endereco(self):
         return self.__endereco
 
-    def set_endereco(self, endereco):
+     set_endereco(self, endereco):
         self.__endereco = endereco
 class Curso(Escola):
-    def _init_(self, nome, endereco, cargaHoraria):
+     _init_(self, nome, endereco, cargaHoraria):
         super()._init_(nome, endereco)
         self.__cargaHoraria = cargaHoraria  # Atributo privado específico de Curso
         
-    def get_cargaHoraria(self):
+     get_cargaHoraria(self):
         return self.__cargaHoraria
 
-    def set_cargaHoraria(self, cargaHoraria):
+     set_cargaHoraria(self, cargaHoraria):
         if cargaHoraria > 0:
             self.__cargaHoraria = cargaHoraria
         else:
             print("Erro: A carga horária deve ser maior que zero!")
  
-    def exibirInformacoes(self):
+     exibirInformacoes(self):
         print(f"Nome: {self.get_nome()}")
         print(f"Endereço: {self.get_endereco()}")
         print(f"Carga Horária: {self.get_cargaHoraria()} horas")
 class CursoTecnico(Curso):
-    def _init_(self, nome, endereco, cargaHoraria, modalidade):
+     _init_(self, nome, endereco, cargaHoraria, modalidade):
      
         super()._init_(nome, endereco, cargaHoraria)
         self.__modalidade = modalidade  # Atributo privado específico de CursoTecnico
 
-    def get_modalidade(self):
+     get_modalidade(self):
         return self.__modalidade
   
-    def set_modalidade(self, modalidade):
+     set_modalidade(self, modalidade):
         self.__modalidade = modalidade
 
-    def exibirInformacoes(self):
+     exibirInformacoes(self):
      
         super().exibirInformacoes()  # Isso chama o método da classe Curso
         print(f"Modalidade: {self.get_modalidade()}")
