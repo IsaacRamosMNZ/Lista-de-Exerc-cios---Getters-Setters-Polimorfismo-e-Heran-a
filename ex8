@@ -1,53 +1,53 @@
 from abc import ABC, abstractmethod
 
 class Escola(ABC):
-    def _init_(self, nome, endereco):
+     _init_(self, nome, endereco):
         self.__nome = nome  # Atributo privado
         self.__endereco = endereco  # Atributo privado
 
-    def get_nome(self):
+     get_nome(self):
         return self.__nome
 
-    def set_nome(self, nome):
+     set_nome(self, nome):
         self.__nome = nome
 
-    def get_endereco(self):
+     get_endereco(self):
         return self.__endereco
 
-    def set_endereco(self, endereco):
+     set_endereco(self, endereco):
         self.__endereco = endereco
 
     @abstractmethod
-    def calcularMensalidade(self):
+     calcularMensalidade(self):
         pass
 class Curso(Escola):
-    def _init_(self, nome, endereco, cargaHoraria):
+     _init_(self, nome, endereco, cargaHoraria):
         super()._init_(nome, endereco)
         self.__cargaHoraria = cargaHoraria  
         
-    def get_cargaHoraria(self):
+     get_cargaHoraria(self):
         return self.__cargaHoraria
 
-    def set_cargaHoraria(self, cargaHoraria):
+     set_cargaHoraria(self, cargaHoraria):
         if cargaHoraria > 0:
             self.__cargaHoraria = cargaHoraria
         else:
             print("Erro: A carga horária deve ser maior que zero!")
    
-    def calcularMensalidade(self):
+     calcularMensalidade(self):
         return 500
 class CursoTecnico(Curso):
-    def _init_(self, nome, endereco, cargaHoraria, modalidade):
+     _init_(self, nome, endereco, cargaHoraria, modalidade):
         super()._init_(nome, endereco, cargaHoraria)
         self.__modalidade = modalidade  
 
-    def get_modalidade(self):
+     get_modalidade(self):
         return self.__modalidade
 
-    def set_modalidade(self, modalidade):
+     set_modalidade(self, modalidade):
         self.__modalidade = modalidade
 
-    def calcularMensalidade(self):
+     calcularMensalidade(self):
         mensalidade_base = super().calcularMensalidade()  
         acréscimo = (self.get_cargaHoraria() // 10) * 50
         return mensalidade_base + acréscimo
