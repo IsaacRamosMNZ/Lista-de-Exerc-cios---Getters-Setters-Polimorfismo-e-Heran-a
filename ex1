@@ -1,0 +1,52 @@
+class Escola:
+    def _init_(self, nome, endereco):
+        # Inicializa os atributos
+        self.__nome = nome
+        self.__endereco = endereco
+
+    # Getter para o nome
+    def get_nome(self):
+        return self.__nome
+
+    # Setter para o nome
+    def set_nome(self, nome):
+        self.__nome = nome
+
+    # Getter para o endereço
+    def get_endereco(self):
+        return self.__endereco
+
+    # Setter para o endereço
+    def set_endereco(self, endereco):
+        self.__endereco = endereco
+class Curso(Escola):
+    def _init_(self, nome, endereco, cargaHoraria):
+        # Chama o construtor da classe pai (Escola)
+        super()._init_(nome, endereco)
+        # Inicializa o atributo cargaHoraria
+        self.__cargaHoraria = cargaHoraria
+
+    # Getter para a carga horária
+    def get_carga_horaria(self):
+        return self.__cargaHoraria
+
+    # Setter para a carga horária
+    def set_carga_horaria(self, cargaHoraria):
+        self.__cargaHoraria = cargaHoraria
+        # Criando uma instância da classe Curso
+curso = Curso("Curso de Python", "Rua das Aulas, 456", 40)
+
+# Acessando os atributos através dos getters
+print(f"Nome da escola: {curso.get_nome()}")
+print(f"Endereço da escola: {curso.get_endereco()}")
+print(f"Carga horária do curso: {curso.get_carga_horaria()} horas")
+
+# Modificando os atributos através dos setters
+curso.set_nome("Curso de Java")
+curso.set_endereco("Avenida da Tecnologia, 789")
+curso.set_carga_horaria(60)
+
+# Acessando os novos valores
+print(f"Novo nome do curso: {curso.get_nome()}")
+print(f"Novo endereço do curso: {curso.get_endereco()}")
+print(f"Nova carga horária do curso: {curso.get_carga_horaria()} horas")
