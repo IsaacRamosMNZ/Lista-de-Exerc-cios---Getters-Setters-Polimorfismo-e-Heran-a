@@ -1,0 +1,71 @@
+Loja de Eletrônicos
+Eletronico.java
+
+abstract class Eletronico {
+    protected String marca;
+
+    public Eletronico(String marca) {
+        this.marca = marca;
+    }
+
+    public abstract void ligar();
+}
+
+Celular.java
+
+class Celular extends Eletronico {
+    private double tela;
+
+    public Celular(String marca) {
+        super(marca);
+    }
+
+    // Sobrecarga para definir tamanho da tela com tipo double
+    public void definirTela(double tela) {
+        this.tela = tela;
+    }
+
+    // Sobrecarga para definir tamanho da tela com tipo int
+    public void definirTela(int tela) {
+        this.tela = (double) tela;
+    }
+
+    @Override
+    public void ligar() {
+        System.out.println("Celular " + marca + " ligado!");
+    }
+}
+
+Notebook.java
+
+
+class Notebook extends Eletronico {
+    private int ram;
+
+    public Notebook(String marca) {
+        super(marca);
+    }
+
+    public void definirRam(int ram) {
+        this.ram = ram;
+    }
+
+    @Override
+    public void ligar() {
+        System.out.println("Notebook " + marca + " ligado!");
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Celular celular = new Celular("Samsung");
+        celular.definirTela(6.5);
+        celular.ligar();
+
+        Notebook notebook = new Notebook("Dell");
+        notebook.definirRam(16);
+        notebook.ligar();
+    }
+}
