@@ -1,71 +1,63 @@
-Loja de Eletrônicos
-Eletronico.java
+class Escola:
+    def _init_(self, nome, endereco):
+        self.__nome = nome  # Atributo privado
+        self.__endereco = endereco  # Atributo privado
+ 
+    def get_nome(self):
+        return self.__nome
 
-abstract class Eletronico {
-    protected String marca;
+    def set_nome(self, nome):
+        self.__nome = nome
 
-    public Eletronico(String marca) {
-        this.marca = marca;
-    }
+    def get_endereco(self):
+        return self.__endereco
 
-    public abstract void ligar();
-}
+    def set_endereco(self, endereco):
+        self.__endereco = endereco
+class Curso(Escola):
+    def _init_(self, nome, endereco, cargaHoraria):
+        # Chamando o construtor da classe base (Escola) para inicializar nome e endereco
+        super()._init_(nome, endereco)
+        self.__cargaHoraria = cargaHoraria  # Atributo privado específico de Curso
+  
+    def get_cargaHoraria(self):
+        return self.__cargaHoraria
 
-Celular.java
+    def set_cargaHoraria(self, cargaHoraria):
+        self.__cargaHoraria = cargaHoraria
 
-class Celular extends Eletronico {
-    private double tela;
+    def exibirInformacoes(self):
+        print(f"Nome: {self.get_nome()}")
+        print(f"Endereço: {self.get_endereco()}")
+        print(f"Carga Horária: {self.get_cargaHoraria()} horas")
+class CursoTecnico(Curso):
+    def _init_(self, nome, endereco, cargaHoraria, modalidade):
+        # Chamando o construtor da classe base (Curso) para inicializar nome, endereco e cargaHoraria
+        super()._init_(nome, endereco, cargaHoraria)
+        self.__modalidade = modalidade  # Atributo privado específico de CursoTecnico
+        
+    def get_modalidade(self):
+        return self.__modalidade
 
-    public Celular(String marca) {
-        super(marca);
-    }
+    def set_modalidade(self, modalidade):
+        self.__modalidade = modalidade
 
-    // Sobrecarga para definir tamanho da tela com tipo double
-    public void definirTela(double tela) {
-        this.tela = tela;
-    }
+    def exibirInformacoes(self):
+        super().exibirInformacoes() 
+        print(f"Modalidade: {self.get_modalidade()}")
+class Main:
+    @staticmethod
+    def main():
+       
+        curso1 = Curso("Curso de Python", "Avenida dos Programadores, 101", 120)
 
-    // Sobrecarga para definir tamanho da tela com tipo int
-    public void definirTela(int tela) {
-        this.tela = (double) tela;
-    }
+        print("Informações do Curso:")
+        curso1.exibirInformacoes()
+      
+        curso_tecnico = CursoTecnico("Curso Técnico em Redes", "Rua da Tecnologia, 200", 200, "Presencial")
 
-    @Override
-    public void ligar() {
-        System.out.println("Celular " + marca + " ligado!");
-    }
-}
+        print("\nInformações do Curso Técnico:")
+        curso_tecnico.exibirInformacoes()
 
-Notebook.java
-
-
-class Notebook extends Eletronico {
-    private int ram;
-
-    public Notebook(String marca) {
-        super(marca);
-    }
-
-    public void definirRam(int ram) {
-        this.ram = ram;
-    }
-
-    @Override
-    public void ligar() {
-        System.out.println("Notebook " + marca + " ligado!");
-    }
-}
-
-Main.java
-
-public class Main {
-    public static void main(String[] args) {
-        Celular celular = new Celular("Samsung");
-        celular.definirTela(6.5);
-        celular.ligar();
-
-        Notebook notebook = new Notebook("Dell");
-        notebook.definirRam(16);
-        notebook.ligar();
-    }
-}
+if _name_ == "_main_":
+    Main.main()
