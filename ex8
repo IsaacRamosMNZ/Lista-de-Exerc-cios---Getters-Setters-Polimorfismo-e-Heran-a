@@ -1,70 +1,53 @@
-Tipos de Transporte
-Transporte.java
+from abc import ABC, abstractmethod
 
-abstract class Transporte {
-    protected int capacidade;
+class Escola(ABC):
+    def _init_(self, nome, endereco):
+        self.__nome = nome  # Atributo privado
+        self.__endereco = endereco  # Atributo privado
 
-    public Transporte(int capacidade) {
-        this.capacidade = capacidade;
-    }
+    def get_nome(self):
+        return self.__nome
 
-    public abstract void mover();
-}
+    def set_nome(self, nome):
+        self.__nome = nome
 
-Navio.java
+    def get_endereco(self):
+        return self.__endereco
 
-class Navio extends Transporte {
-    private double tonelagem;
+    def set_endereco(self, endereco):
+        self.__endereco = endereco
 
-    public Navio(int capacidade) {
-        super(capacidade);
-    }
+    @abstractmethod
+    def calcularMensalidade(self):
+        pass
+class Curso(Escola):
+    def _init_(self, nome, endereco, cargaHoraria):
+        super()._init_(nome, endereco)
+        self.__cargaHoraria = cargaHoraria  
+        
+    def get_cargaHoraria(self):
+        return self.__cargaHoraria
 
-    // Sobrecarga para definir tonelagem com tipo double
-    public void definirTonelagem(double tonelagem) {
-        this.tonelagem = tonelagem;
-    }
+    def set_cargaHoraria(self, cargaHoraria):
+        if cargaHoraria > 0:
+            self.__cargaHoraria = cargaHoraria
+        else:
+            print("Erro: A carga horária deve ser maior que zero!")
+   
+    def calcularMensalidade(self):
+        return 500
+class CursoTecnico(Curso):
+    def _init_(self, nome, endereco, cargaHoraria, modalidade):
+        super()._init_(nome, endereco, cargaHoraria)
+        self.__modalidade = modalidade  
 
-    // Sobrecarga para definir tonelagem com tipo int
-    public void definirTonelagem(int tonelagem) {
-        this.tonelagem = (double) tonelagem;
-    }
+    def get_modalidade(self):
+        return self.__modalidade
 
-    @Override
-    public void mover() {
-        System.out.println("Navio movendo com capacidade de " + capacidade + " passageiros.");
-    }
-}
+    def set_modalidade(self, modalidade):
+        self.__modalidade = modalidade
 
-Avião.java
-class Aviao extends Transporte {
-    private int altitudeMaxima;
-
-    public Aviao(int capacidade) {
-        super(capacidade);
-    }
-
-    public void definirAltitude(int altitude) {
-        this.altitudeMaxima = altitude;
-    }
-
-    @Override
-    public void mover() {
-        System.out.println("Avião movendo a " + altitudeMaxima + " metros de altitude.");
-    }
-}
-
-Main.java
-java
-Copiar
-public class Main {
-    public static void main(String[] args) {
-        Navio navio = new Navio(100);
-        navio.definirTonelagem(20000);
-        navio.mover();
-
-        Aviao aviao = new Aviao(200);
-        aviao.definirAltitude(10000);
-        aviao.mover();
-    }
-}
+    def calcularMensalidade(self):
+        mensalidade_base = super().calcularMensalidade()  
+        acréscimo = (self.get_cargaHoraria() // 10) * 50
+        return mensalidade_base + acréscimo
