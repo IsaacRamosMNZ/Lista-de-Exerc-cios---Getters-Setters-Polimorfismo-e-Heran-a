@@ -1,73 +1,73 @@
-Tipos de Pagamento
-Pagamento.java
+class Escola:
+    def _init_(self, nome, endereco):
+        self.__nome = nome  # Atributo privado
+        self.__endereco = endereco  # Atributo privado
 
-abstract class Pagamento {
-    protected double valor;
+    def get_nome(self):
+        return self.__nome
 
-    public Pagamento(double valor) {
-        this.valor = valor;
-    }
+    def set_nome(self, nome):
+        self.__nome = nome
 
-    public abstract void processarPagamento();
-}
+    def get_endereco(self):
+        return self.__endereco
+    
+    def set_endereco(self, endereco):
+        self.__endereco = endereco
+class Curso(Escola):
+    def _init_(self, nome, endereco, cargaHoraria):
+        # Chamando o construtor da classe base (Escola) para inicializar nome e endereco
+        super()._init_(nome, endereco)
+        self.__cargaHoraria = cargaHoraria  # Atributo privado específico de Curso
 
-CartaoCredito.java
-java
+    def get_cargaHoraria(self):
+        return self.__cargaHoraria
 
-class CartaoCredito extends Pagamento {
-    private double limite;
+    def set_cargaHoraria(self, cargaHoraria):
+        if cargaHoraria > 0:
+            self.__cargaHoraria = cargaHoraria
+        else:
+            print("Erro: A carga horária deve ser maior que zero!")
 
-    public CartaoCredito(double valor) {
-        super(valor);
-    }
+    def exibirInformacoes(self):
+        print(f"Nome: {self.get_nome()}")
+        print(f"Endereço: {self.get_endereco()}")
+        print(f"Carga Horária: {self.get_cargaHoraria()} horas")
+class CursoTecnico(Curso):
+    def _init_(self, nome, endereco, cargaHoraria, modalidade):
+        # Chamando o construtor da classe base (Curso) para inicializar nome, endereco e cargaHoraria
+        super()._init_(nome, endereco, cargaHoraria)
+        self.__modalidade = modalidade  # Atributo privado específico de CursoTecnico
 
-    // Sobrecarga para definir limite com tipo double
-    public void definirLimite(double limite) {
-        this.limite = limite;
-    }
+    def get_modalidade(self):
+        return self.__modalidade
 
-    // Sobrecarga para definir limite com tipo int
-    public void definirLimite(int limite) {
-        this.limite = (double) limite;
-    }
+    def set_modalidade(self, modalidade):
+        self.__modalidade = modalidade
 
-    @Override
-    public void processarPagamento() {
-        System.out.println("Pagamento de " + valor + " realizado com Cartão de Crédito.");
-    }
-}
+    def exibirInformacoes(self):
+        super().exibirInformacoes()  # Chama o método da classe base (Curso)
+        print(f"Modalidade: {self.get_modalidade()}")
+class Main:
+    @staticmethod
+    def main():
+        
+        curso1 = Curso("Curso de Python", "Avenida dos Programadores, 101", 120)
+   
+        print("Informações do Curso:")
+        curso1.exibirInformacoes()
+    
+        print("\nTentando definir carga horária negativa:")
+        curso1.set_cargaHoraria(-50)  # Deveria mostrar um erro
 
-Boleto.java
-java
+       print("\nDefinindo carga horária positiva:")
+        curso1.set_cargaHoraria(150)
+        curso1.exibirInformacoes()  # Exibindo informações novamente após alteração
 
-class Boleto extends Pagamento {
-    private String codigoBarras;
+        curso_tecnico = CursoTecnico("Curso Técnico em Redes", "Rua da Tecnologia, 200", 200, "Presencial")
 
-    public Boleto(double valor) {
-        super(valor);
-    }
-
-    public void definirCodigo(String codigo) {
-        this.codigoBarras = codigo;
-    }
-
-    @Override
-    public void processarPagamento() {
-        System.out.println("Pagamento de " + valor + " realizado com Boleto.");
-    }
-}
-
-Main.java
-java
-
-public class Main {
-    public static void main(String[] args) {
-        CartaoCredito cartao = new CartaoCredito(150.00);
-        cartao.definirLimite(5000);
-        cartao.processarPagamento();
-
-        Boleto boleto = new Boleto(200.00);
-        boleto.definirCodigo("123456789");
-        boleto.processarPagamento();
-    }
-}
+        print("\nInformações do Curso Técnico:")
+        curso_tecnico.exibirInformacoes()
+        
+if _name_ == "_main_":
+    Main.main()
