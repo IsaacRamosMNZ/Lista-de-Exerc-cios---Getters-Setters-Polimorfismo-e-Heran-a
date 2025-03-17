@@ -1,0 +1,70 @@
+Tipos de Transporte
+Transporte.java
+
+abstract class Transporte {
+    protected int capacidade;
+
+    public Transporte(int capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public abstract void mover();
+}
+
+Navio.java
+
+class Navio extends Transporte {
+    private double tonelagem;
+
+    public Navio(int capacidade) {
+        super(capacidade);
+    }
+
+    // Sobrecarga para definir tonelagem com tipo double
+    public void definirTonelagem(double tonelagem) {
+        this.tonelagem = tonelagem;
+    }
+
+    // Sobrecarga para definir tonelagem com tipo int
+    public void definirTonelagem(int tonelagem) {
+        this.tonelagem = (double) tonelagem;
+    }
+
+    @Override
+    public void mover() {
+        System.out.println("Navio movendo com capacidade de " + capacidade + " passageiros.");
+    }
+}
+
+Avião.java
+class Aviao extends Transporte {
+    private int altitudeMaxima;
+
+    public Aviao(int capacidade) {
+        super(capacidade);
+    }
+
+    public void definirAltitude(int altitude) {
+        this.altitudeMaxima = altitude;
+    }
+
+    @Override
+    public void mover() {
+        System.out.println("Avião movendo a " + altitudeMaxima + " metros de altitude.");
+    }
+}
+
+Main.java
+java
+Copiar
+public class Main {
+    public static void main(String[] args) {
+        Navio navio = new Navio(100);
+        navio.definirTonelagem(20000);
+        navio.mover();
+
+        Aviao aviao = new Aviao(200);
+        aviao.definirAltitude(10000);
+        aviao.mover();
+    }
+}
