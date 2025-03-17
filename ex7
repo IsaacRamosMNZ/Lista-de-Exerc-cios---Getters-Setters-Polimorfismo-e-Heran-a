@@ -1,0 +1,73 @@
+Personagens de Jogo
+Personagem.java
+java
+Copiar
+abstract class Personagem {
+    protected int energia;
+
+    public Personagem(int energia) {
+        this.energia = energia;
+    }
+
+    public abstract void atacar();
+}
+
+Mago.java
+java
+Copiar
+class Mago extends Personagem {
+    private double mana;
+
+    public Mago(int energia) {
+        super(energia);
+    }
+
+    // Sobrecarga para definir mana com tipo double
+    public void definirMana(double mana) {
+        this.mana = mana;
+    }
+
+    // Sobrecarga para definir mana com tipo int
+    public void definirMana(int mana) {
+        this.mana = (double) mana;
+    }
+
+    @Override
+    public void atacar() {
+        System.out.println("Mago ataca com " + mana + " de mana!");
+    }
+}
+
+Guerreiro.java
+java
+Copiar
+class Guerreiro extends Personagem {
+    private int forca;
+
+    public Guerreiro(int energia) {
+        super(energia);
+    }
+
+    public void definirForca(int forca) {
+        this.forca = forca;
+    }
+
+    @Override
+    public void atacar() {
+        System.out.println("Guerreiro ataca com " + forca + " de força!");
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Mago mago = new Mago(100);
+        mago.definirMana(50);
+        mago.atacar();
+
+        Guerreiro guerreiro = new Guerreiro(200);
+        guerreiro.definirForca(80);
+        guerreiro.atacar();
+    }
+}
