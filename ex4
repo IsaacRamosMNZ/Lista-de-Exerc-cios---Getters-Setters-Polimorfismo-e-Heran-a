@@ -20,8 +20,6 @@ class Escola:
     def set_endereco(self, endereco):
         self.__endereco = endereco
 Classe Curso (Herda de Escola e inclui construtor)
-python
-Copiar
 class Curso(Escola):
     def _init_(self, nome, endereco, cargaHoraria):
         # Chama o construtor da classe pai (Escola)
@@ -43,8 +41,6 @@ class Curso(Escola):
         print(f"Endereço: {self.get_endereco()}")
         print(f"Carga Horária: {self.get_carga_horaria()} horas")
 Classe CursoTecnico (Herda de Curso e inclui construtor)
-python
-Copiar
 class CursoTecnico(Curso):
     def _init_(self, nome, endereco, cargaHoraria, modalidade):
         # Chama o construtor da classe pai (Curso)
@@ -66,17 +62,3 @@ class CursoTecnico(Curso):
         super().exibirInformacoes()
         # Adiciona a exibição do atributo modalidade
         print(f"Modalidade: {self.get_modalidade()}")
-Exemplo de uso:
-python
-Copiar
-# Criando uma instância da classe Curso
-curso = Curso("Curso de Python", "Rua das Aulas, 456", 40)
-print("Informações do Curso:")
-curso.exibirInformacoes()  # Exibe informações do curso
-
-print("\n---")
-
-# Criando uma instância de CursoTecnico
-curso_tecnico = CursoTecnico("Curso Técnico de TI", "Avenida da Tecnologia, 789", 120, "Presencial")
-print("Informações do Curso Técnico:")
-curso_tecnico.exibirInformacoes()  # Exibe informações do curso técnico, incluindo modalidade
