@@ -1,0 +1,73 @@
+Tipos de Pagamento
+Pagamento.java
+
+abstract class Pagamento {
+    protected double valor;
+
+    public Pagamento(double valor) {
+        this.valor = valor;
+    }
+
+    public abstract void processarPagamento();
+}
+
+CartaoCredito.java
+java
+
+class CartaoCredito extends Pagamento {
+    private double limite;
+
+    public CartaoCredito(double valor) {
+        super(valor);
+    }
+
+    // Sobrecarga para definir limite com tipo double
+    public void definirLimite(double limite) {
+        this.limite = limite;
+    }
+
+    // Sobrecarga para definir limite com tipo int
+    public void definirLimite(int limite) {
+        this.limite = (double) limite;
+    }
+
+    @Override
+    public void processarPagamento() {
+        System.out.println("Pagamento de " + valor + " realizado com Cartão de Crédito.");
+    }
+}
+
+Boleto.java
+java
+
+class Boleto extends Pagamento {
+    private String codigoBarras;
+
+    public Boleto(double valor) {
+        super(valor);
+    }
+
+    public void definirCodigo(String codigo) {
+        this.codigoBarras = codigo;
+    }
+
+    @Override
+    public void processarPagamento() {
+        System.out.println("Pagamento de " + valor + " realizado com Boleto.");
+    }
+}
+
+Main.java
+java
+
+public class Main {
+    public static void main(String[] args) {
+        CartaoCredito cartao = new CartaoCredito(150.00);
+        cartao.definirLimite(5000);
+        cartao.processarPagamento();
+
+        Boleto boleto = new Boleto(200.00);
+        boleto.definirCodigo("123456789");
+        boleto.processarPagamento();
+    }
+}
